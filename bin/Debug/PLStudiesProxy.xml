@@ -1,0 +1,846 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "PLStudiesProxy"
+    </assembly>
+    <members>
+        <member name="M:PowerLanguage.Strategy.SignalObject.GenerateATMarketOrder(System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+Market order generation.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.Strategy.SignalObject.GeneratePercentTrailing(System.Double,System.Double)">
+            <summary>
+PercentTrailing order generation.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.Strategy.SignalObject.GenerateDollarTrailing(System.Double)">
+            <summary>
+DollarTrailing order generation.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.Strategy.SignalObject.GenerateBreakEven(System.Double)">
+            <summary>
+BreakEven order generation.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.Strategy.SignalObject.GenerateExitOnClose">
+            <summary>
+ExitOnClose order generation.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.Strategy.SignalObject.GenerateProfitTarget(System.Double)">
+            <summary>
+ProfitTarget order generation.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.Strategy.SignalObject.GenerateStopLoss(System.Double)">
+            <summary>
+StopLoss order generation.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.CurSpecOrdersMode">
+            <summary>
+Property for requesting or setting special orders mode:
+perLot,
+perPosition.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.OrderCreator">
+            <summary>				
+Returns the order generation interface (IOrderCreator).
+</summary>
+        </member>
+        <member name="M:PowerLanguage.Strategy.SignalObject.SetInitialBrokerPosition(System.Int32,System.Double,System.Double)">
+            <summary>
+Assign initial market position at broker for the strategy.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.Strategy.SignalObject.SetInitialBrokerPosition(PowerLanguage.IOrderObject,System.Int32,System.Double,System.Double)">
+            <summary>
+Assign initial market position at broker for the strategy.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.Strategy.SignalObject.ChangeMarketPosition(System.Int32,System.Double)">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Strategy.SignalObject.ChangeMarketPosition(System.Int32,System.Double,System.String)">
+            <exclude />
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.CustomFitnessValue">
+            <summary>
+Set calculated fitness value. This method may be used during strategy optimization
+to pass custom calculated optimization criteria value.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.Profile">
+            <summary>
+Returns current trading profile name.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.Account">
+            <summary>
+Returns current account name.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.InterestRate">
+            <summary>
+Returns 'Interest Rate' from the Strategy Properties window.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.InitialCapital">
+            <summary>
+Returns 'Initial Capital' from the Strategy Properties window.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.Slippage">
+            <summary>
+Returns 'Slippage' from the Strategy Properties window.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.Commission">
+            <summary>
+Returns 'Commission' from the Strategy Properties window.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.TotalTrades">
+            <summary>
+Return total number of trades.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.TotalBarsWinTrades">
+            <summary>
+Returns the total number of bars during which winning trades were open.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.TotalBarsLosTrades">
+            <summary>				
+Returns the total number of bars during which losing trades were open.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.TotalBarsEvenTrades">
+            <summary>				
+Returns the total number of bars during which even trades (without profit and loss) were open.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.PercentProfit">
+            <summary>
+Returns a ratio of profitable trades to total number of trades expressed in percent 
+( 100*(NumWinTrades/TotalTrades)).
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.NumWinTrades">
+            <summary>
+Returns total number or profitable trades.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.NumLosTrades">
+            <summary>
+Returns total number or losing trades.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.NumEvenTrades">
+            <summary>				
+Returns total number of trades that did not bring any profit or loss.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.MaxDrawDown">
+            <summary>				
+Returns maximum potential loss (drawdown) during entire trading period.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.MaxLotsHeld">
+            <summary>				
+Returns maximal number of sequential unprofitable trades.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.MaxConsecWinners">
+            <summary>				
+Returns maximum number of sequential profitable trades.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.MaxConsecLosers">
+            <summary>
+Returns maximum number of sequential unprofitable trades.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.LargestWinTrade">
+            <summary>				
+Returns non-negative number with maximum profit of a single trade.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.LargestLosTrade">
+            <summary>				
+Returns non-positive number with the maximum loss of a single trade.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.GrossProfit">
+            <summary>				
+Returns non-negative number that indicates total strategy profit. 
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.GrossLoss">
+            <summary>				
+Returns a non-positive number that indicates total strategy loss.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.AvgBarsWinTrade">
+            <summary>
+Returns the average length of winning trades in terms of bars.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.AvgBarsLosTrade">
+            <summary>
+Returns the average length of losing trades in terms of bars.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.AvgBarsEvenTrade">
+            <summary>				
+Returns the average length of even trades (without profit and loss) in terms of bars.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.NetProfit">
+            <summary>
+Returns strategy's fixed net profit.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.Portfolio">
+            <summary>
+Returns the interface which provides Portfolio Perfomance.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.CurrentPosition">
+            <summary>
+Returns strategy's current position.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.Positions">
+            <summary>
+Returns a read-only collection of all strategy positions.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Strategy.SignalObject.PositionSide">
+            <summary>
+Returns strategy's market position.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.Strategy.SignalObject.DestroyImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Strategy.SignalObject.PreExecuteImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Strategy.SignalObject.AfterInitializeImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Strategy.SignalObject.BeforeInitializeImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Strategy.SignalObject.AfterConstructImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Strategy.SignalObject.BeforeConstructImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Strategy.SignalObject.Dispose">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Strategy.SignalObject.#ctor(System.Object)">
+            <exclude />
+        </member>
+        <member name="T:PowerLanguage.Strategy.SignalObject">
+            <summary>
+Base class for strategies 
+(inherit from SignalObject to create this kind of study).
+</summary>
+        </member>
+        <member name="T:PowerLanguage.COutputLog">
+            <exclude />
+        </member>
+        <member name="F:PowerLanguage.Indicator.IndicatorObject.m_plots">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Indicator.IndicatorObject.PlotInfo2DeclarePlotInfo(PowerLanguage.StringPlotAttributes@)">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Indicator.IndicatorObject.PlotInfo2DeclarePlotInfo(PowerLanguage.PlotAttributes@)">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Indicator.IndicatorObject.AddPlot(PowerLanguage.StringPlotAttributes)">
+            <summary>A method for a string plot adding with 'info' parameters.
+<seealso cref="T:PowerLanguage.StringPlotAttributes" /></summary>
+            <param name="info">Specifies attributes for the new plot object.</param>
+        </member>
+        <member name="M:PowerLanguage.Indicator.IndicatorObject.AddPlot(PowerLanguage.PlotAttributes)">
+            <summary>A method for a plot adding with 'info' parameters.
+<seealso cref="T:PowerLanguage.PlotAttributes" /></summary>
+            <param name="info">Specifies attributes for the new plot object.</param>
+        </member>
+        <member name="M:PowerLanguage.Indicator.IndicatorObject.AddPlot">
+            <summary>A method for a plot adding.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.Indicator.IndicatorObject.Plots">
+            <summary>
+Read-only property. 
+Returns indicator’s existing plots list.
+</summary>
+            <returns> Plots Collection </returns>
+        </member>
+        <member name="M:PowerLanguage.Indicator.IndicatorObject.DestroyImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Indicator.IndicatorObject.AfterInitializeImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Indicator.IndicatorObject.BeforeInitializeImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Indicator.IndicatorObject.AfterConstructImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Indicator.IndicatorObject.BeforeConstructImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Indicator.IndicatorObject.Dispose">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Indicator.IndicatorObject.#ctor(System.Object)">
+            <summary>
+Initializes a new instance of the IndicatorObject class.
+</summary>
+        </member>
+        <member name="T:PowerLanguage.Indicator.IndicatorObject">
+            <summary>
+Indicator’s base class (inherit from this class to create an indicator).
+</summary>
+        </member>
+        <member name="M:PowerLanguage.Function.FunctionSimple`1.DestroyImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Function.FunctionSimple`1.BeforeConstructImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Function.FunctionSimple`1.DoFakeExecute">
+            <exclude />
+        </member>
+        <member name="P:PowerLanguage.Function.FunctionSimple`1.Item(System.Int32)">
+            <summary>Returns the function calculation result at the specified bar.
+</summary>
+            <param name="barsAgo">Function calling context.</param>
+        </member>
+        <member name="M:PowerLanguage.Function.FunctionSimple`1.Dispose">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Function.FunctionSimple`1.#ctor(PowerLanguage.CStudyControl,System.Int32)">
+            <summary>Initializes a new instance of the FunctionSimple class. 
+</summary>
+            <param name="master">Study object which manages this FunctionSimple object.</param>
+            <param name="dataStream">This object base data stream number.</param>
+        </member>
+        <member name="M:PowerLanguage.Function.FunctionSimple`1.#ctor(PowerLanguage.CStudyControl)">
+            <summary>Initializes a new instance of the FunctionSimple class. 
+</summary>
+            <param name="master">Study object which manages this FunctionSimple object.</param>
+        </member>
+        <member name="T:PowerLanguage.Function.FunctionSimple`1">
+            <summary>
+Simple function’s base class. 
+Its peculiarity is that it doesn’t keep the history of its values, 
+but rather calculates them each time in the context of calling an execution 
+(on the bar, shifted relative to the current one for a specified number of bars).
+</summary>
+        </member>
+        <member name="M:PowerLanguage.Function.FunctionSeries`1.DestroyImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Function.FunctionSeries`1.BeforeConstructImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Function.FunctionSeries`1.DoFakeExecute">
+            <exclude />
+        </member>
+        <member name="P:PowerLanguage.Function.FunctionSeries`1.Item(System.Int32)">
+            <summary>Returns the function calculation result at the specified bar.
+</summary>
+            <param name="barsAgo">The bar shift value from the current bar of calculation.</param>
+        </member>
+        <member name="M:PowerLanguage.Function.FunctionSeries`1.Dispose">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.Function.FunctionSeries`1.#ctor(PowerLanguage.CStudyControl,System.Int32)">
+            <summary>Initializes a new instance of the FunctionSeries class. 
+</summary>
+            <param name="master">Study object which manages this FunctionSimple object.</param>
+            <param name="dataStream">This object base data stream number.</param>
+        </member>
+        <member name="M:PowerLanguage.Function.FunctionSeries`1.#ctor(PowerLanguage.CStudyControl)">
+            <summary>Initializes a new instance of the FunctionSeries class.
+</summary>
+            <param name="master">Study object which manages this FunctionSimple object.</param>
+        </member>
+        <member name="T:PowerLanguage.Function.FunctionSeries`1">
+            <summary>
+A series function’s  base class. 
+Feature of a series function is that its body is always calculated 
+in the current context of execution (at the currently calculating bar), 
+and the function always keeps its previous values.
+</summary>
+        </member>
+        <member name="F:PowerLanguage.FunctionObject`1.m_strategy_site">
+            <exclude />
+        </member>
+        <member name="F:PowerLanguage.FunctionObject`1.m_calculated">
+            <exclude />
+        </member>
+        <member name="F:PowerLanguage.FunctionObject`1.m_unmanaged_stub">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.FunctionObject`1.DoInitializeVars(_ELAPI_.variables.IInitIndexes!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.FunctionObject`1.DoRecoveryVars(System.Int32)">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.FunctionObject`1.DoCloseBarVars(System.Int32)">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.FunctionObject`1.DoFinishCalc">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.FunctionObject`1.DoUnInitialize">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.FunctionObject`1.DoInitialize">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.FunctionObject`1.DoConstruct">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.FunctionObject`1._recover">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.FunctionObject`1.DestroyImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.FunctionObject`1.BeforeConstructImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.FunctionObject`1.DoFakeExecute">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.FunctionObject`1.Destroy">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.FunctionObject`1.StopCalc">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.FunctionObject`1.StartCalc">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.FunctionObject`1.Create">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.FunctionObject`1.CalcBar">
+            <exclude />
+        </member>
+        <member name="P:PowerLanguage.FunctionObject`1.MyStrategy">
+            <summary>
+Read-only property. Returns a reference to the current strategy.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.FunctionObject`1.Call(System.Int32)">
+            <summary>
+Returns a reference to a bar located a specified number of bars back from the current bar.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.FunctionObject`1.Call">
+            <summary>
+Returns a reference to the curent bar.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.FunctionObject`1.Value">
+            <summary>
+Read-only property. Returns a reference to the curent bar.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.FunctionObject`1.Item(System.Int32)">
+            <summary>
+Read-only property. Returns a reference to a bar located a specified number of bars back from the current bar.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.FunctionObject`1.Dispose">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.FunctionObject`1.#ctor(PowerLanguage.CStudyControl,System.Boolean,System.Int32)">
+            <summary>
+Initializes a new instance of the FunctionObject class.
+</summary>
+        </member>
+        <member name="T:PowerLanguage.FunctionObject`1">
+            <summary>
+Class that describes a function object.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.CStudyAbstract.host_void_ptr">
+            <exclude />
+        </member>
+        <member name="P:PowerLanguage.CStudyAbstract.host_id">
+            <exclude />
+        </member>
+        <member name="P:PowerLanguage.CStudyAbstract.StudyDataNumber">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.CStudyAbstract.DoInitializeVars(_ELAPI_.variables.IInitIndexes!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.CStudyAbstract.DestroyImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.CStudyAbstract.PreExecuteImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.CStudyAbstract.AfterInitializeImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.CStudyAbstract.BeforeInitializeImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.CStudyAbstract.AfterConstructImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.CStudyAbstract.BeforeConstructImpl">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.CStudyAbstract.Destroy">
+            <summary>This method is called once when the study is removed from the chart(scanner).
+</summary>
+        </member>
+        <member name="M:PowerLanguage.CStudyAbstract.OnRecalcLastBarAfterEvent">
+            <summary>Event that happens after timeout in RecalcLastBarAfter function occurs.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.CStudyAbstract.OnBrokerPositionChange">
+            <summary>Event that occurs after MarketPosition and/or average Entry Price changed at broker. 
+</summary>
+        </member>
+        <member name="M:PowerLanguage.CStudyAbstract.OnBrokerStategyOrderFilled(System.Boolean,System.Int32,System.Double)">
+            <summary>Event that occurs after strategy Order has been Filled at broker. 
+This method can be used only for automated trading, not for manual trading.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.CStudyAbstract.OnMouseEvent(PowerLanguage.MouseClickArgs)">
+            <param name="arg">Specifies the mouse-click parameters. Keyboard button code, mouse button code, chart point, bar number and data stream number parameters are passed.</param>
+            <summary>Allows control of mouse-click events on the chart.
+</summary>
+            <example> This example shows how to recalculate script on Shift + MouseLeftButton pressed event.
+<code>
+protected override void CalcBar() {
+	if (Bars.CurrentBar &gt;= start_calc_bar_number) {
+		// execute script from the specified bar
+	}
+}
+
+private static int start_calc_bar_number = 1;
+
+protected override void OnMouseEvent(MouseClickArgs args) {
+	if (Keys.ShiftKey == args.keys &amp;&amp; MouseButtons.Left == args.buttons) {
+		start_calc_bar_number = args.bar_number;
+		ExecControl.Recalculate();
+	}
+}
+</code></example>
+        </member>
+        <member name="M:PowerLanguage.CStudyAbstract.CalcBar">
+            <summary>This method is called every tick from the calculation's beginning bar until the last historical bar.
+<para>Every real-time tick (or bar close, optionally) after the historical calculation.</para></summary>
+            <example>CalcBar method in the MomentumLE signal.
+<code>
+private PowerLanguage.Function.Momentum m_momentum1;
+private PowerLanguage.Function.Momentum m_momentum2;
+private IOrderPriced m_Order0;
+
+protected override void CalcBar() {
+	const double momentum1 = m_momentum1[0];
+	const double momentum2 = m_momentum2[0];
+	if ( momentum1 &gt; 0 &amp;&amp; momentum2 &gt; 0 ) {
+		m_Order0.Send(Bars.High[0] + Bars.Point);
+	}
+}
+</code></example>
+        </member>
+        <member name="M:PowerLanguage.CStudyAbstract.StopCalc">
+            <summary>
+Method which is called once at the end of the calculation process when technique was switched off or removed.
+IMPORTANT! This method may be called in main thread (UI) or in working thread (calculation).
+</summary>
+        </member>
+        <member name="M:PowerLanguage.CStudyAbstract.StartCalc">
+            <summary>Method which is called once at the start of the calculation process.
+<para>Here you can initialize study variables.</para></summary>
+            <example>StartCalc method in the MomentumLE signal.
+<code>
+private PowerLanguage.Function.Momentum m_momentum1;
+private PowerLanguage.Function.Momentum m_momentum2;
+private VariableSeries&lt;double&gt; m_mom;
+private IOrderPriced m_Order0;
+
+private ISeries&lt;double&gt; m_price;
+
+private ISeries&lt;double&gt; price {
+	get { return m_price; }
+}
+
+private int m_length = 12;
+
+[Input]
+public int length {
+	get { return m_length; }
+	set { m_length = value; }
+}
+
+protected override void StartCalc() {
+	m_price = Bars.Close;
+	m_momentum1.price = price;
+	m_momentum1.length = new Lambda&lt;int&gt;(delegate { return length; });
+	m_momentum2.price = m_mom;
+	m_momentum2.length = new ConstantObject&lt;int&gt;(1);
+	m_mom.DefaultValue = 0;
+}
+</code></example>
+        </member>
+        <member name="M:PowerLanguage.CStudyAbstract.Create">
+            <summary>Method which is called once when the study object is created. Here, and only here, access the following:
+<para>1) add plot objects (for indicator objects only) <seealso cref="!:PowerLanguage::Indicator::IndicatorObject" />, </para><para>2) create order objects <see cref="T:PowerLanguage.OrderCreator" /> (for signal objects only) <seealso cref="!:PowerLanguage::Strategy::SignalObject" />, </para><para>3) create function objects, </para><para>4) add variable objects <see cref="M:PowerLanguage.CStudyControl.CreateSimpleVar``1" /><see cref="M:PowerLanguage.CStudyControl.CreateSeriesVar``1" /></para></summary>
+            <example>Create method in the MomentumLE signal.
+<code>
+private PowerLanguage.Function.Momentum m_momentum1;
+private PowerLanguage.Function.Momentum m_momentum2;
+private VariableSeries&lt;double&gt; m_mom;
+private IOrderPriced m_Order0;
+
+protected override void Create() {
+	m_momentum1 = new PowerLanguage.Function.Momentum(this);
+	m_momentum2 = new PowerLanguage.Function.Momentum(this);
+	m_mom = new VariableSeries&lt;double&gt;(this);
+	m_Order0 = OrderCreator.Stop(new SOrderParameters(Contracts.Default, "MomLE", EOrderAction.Buy));
+}
+</code></example>
+        </member>
+        <member name="M:PowerLanguage.CStudyAbstract.AddIndicator(System.String)">
+            <summary>
+This method allows to add any indicator and use it later. 
+The indicator will be calculated every time before this study calculation.
+The goal is to use the indicator's algorithm in signals or other indicators.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.CStudyAbstract.Dispose">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.CStudyAbstract.#ctor(System.Object)">
+            <exclude />
+        </member>
+        <member name="T:PowerLanguage.CStudyAbstract">
+            <summary>Base class for studies.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.ITechniqueEEService.DoInitializeVars(_ELAPI_.variables.IInitIndexes!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.ITechniqueEEService.DoRecovery(System.Int32)">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.ITechniqueEEService.DoCloseBar(System.Int32)">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.ITechniqueEEService.DoDestroy">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.ITechniqueEEService.DoFinishCalc">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.ITechniqueEEService.DoInitialize">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.ITechniqueEEService.DoConstruct">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.ITechniqueEEService.DoExecute">
+            <exclude />
+        </member>
+        <member name="F:PowerLanguage.CStudyControl.m_phase">
+            <exclude />
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.StudyDataNumber">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.CStudyControl.CreateSeriesVar``1(``0,System.Int32)">
+            <param name="defaultVal">Series variable default value.</param>
+            <param name="dataStream">Series variable base datastream number.</param>
+            <summary>
+Creates VariableSeries object.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.CStudyControl.CreateSimpleVar``1(``0,System.Int32)">
+            <param name="defaultVal">Simple variable default value.</param>
+            <param name="dataStream">Simple variable base datastream number.</param>
+            <summary>
+Creates VariableObject object.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.CStudyControl.CreateSimpleVar``1(``0)">
+            <summary>
+Creates VariableObject object.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.CStudyControl.CreateSimpleVar``1">
+            <summary>
+Creates VariableObject object.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.CStudyControl.VolumeProfileByDataStream(System.Int32)">
+            <summary>
+Returns interface for accessing volume profile for specified instrument.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.PersistData">
+            <summary>
+This string is saved to workspace and loaded from workspace.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.VolumeProfile">
+            <summary>
+Returns interface for accessing volume profile.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.TradeManager">
+            <summary>
+Returns interface for accessing trading functionality.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.ChartToolBar">
+            <summary>
+Read-only property. Returns an interface for accessing the toolbar for the chart that has the study applied.
+Gives access to toolbar <see cref="T:System.Windows.Forms.ToolStrip" />  and lets you set its visibility.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.SymbolStorage">
+            <summary>
+Read-only property. Returns an interface for accessing symbol storage. 
+</summary>
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.DataLoader">
+            <summary>
+Read-only property. Returns an interface for data loading.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.ChartCustomDraw">
+            <summary>
+Read-only property. Allows registering your own custom "drawer" for customizing drawing on chart using GDI+ (<see cref="N:System.Drawing" />).			
+</summary>
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.ExpertCommentary">
+            <summary>
+Read-only property. Returns an interface for controlling expert commentary.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.Environment">
+            <summary>
+Read-only property. Returns environment access interface.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.ExecControl">
+            <summary>
+Read-only property. Returns an interface for controlling strategy calculation.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.ExecInfo">
+            <summary>
+Read-only property. Returns an interface for accessing current execution context.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.StrategyInfo">
+            <summary>
+Read-only property. Returns an interface for accessing strategy information.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.DrwArrow">
+            <summary>
+Read-only property. Returns a container for collection of specific IArrowObject.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.DrwTrendLine">
+            <summary>
+Read-only property. Returns a container for ITrendLineObject collection.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.DrwText">
+            <summary>
+Read-only property. Returns a container for ITextObject collection.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.Alerts">
+            <summary>
+Read-only property. Returns an interface for working with Alerts. 
+</summary>
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.Output">
+            <summary>
+Read-only property. Returns an interface to access Output Window.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.CStudyControl.IsExist(System.Int32)">
+            <summary>
+Returns whether there is data at a specified data stream number.
+</summary>
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.MaxDataStream">
+            <summary>
+Read-only property. Returns max data stream.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.CStudyControl.BarsOfData(System.Int32)">
+            <summary>
+Returns instrument for specified data stream number. 
+</summary>
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.Bars">
+            <summary>
+Read-only property. Returns base instrument. 
+</summary>
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.Name">
+            <summary>
+Read-only property. Returns name. 
+</summary>
+        </member>
+        <member name="M:PowerLanguage.CStudyControl.host">
+            <exclude />
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.parent_host_id">
+            <exclude />
+        </member>
+        <member name="P:PowerLanguage.CStudyControl.Host">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.CStudyControl.Dispose">
+            <exclude />
+        </member>
+        <member name="M:PowerLanguage.CStudyControl.#ctor(PowerLanguage.CStudyAbstract,System.Int32!System.Runtime.CompilerServices.IsConst)">
+            <summary>Initializes a new instance of the CStudyControl class.
+</summary>
+            <param name="master">Study object which manages FunctionSimple object.</param>
+            <param name="dataStream">This object's base data stream number.</param>
+        </member>
+        <member name="T:PowerLanguage.CStudyControl">
+            <summary>Base class for studies.
+</summary>
+        </member>
+        <member name="M:PowerLanguage.IFunctionManageEx.DoInitializeVars(_ELAPI_.variables.IInitIndexes!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <exclude />
+        </member>
+        <member name="T:EExecutionPhase">
+            <exclude />
+        </member>
+    </members>
+</doc>
