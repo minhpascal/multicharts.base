@@ -75,7 +75,7 @@ namespace PowerLanguage.Strategy
         protected override void CalcBar()
         {
 
-            if (StrategyInfo.MarketPosition == 0)
+            if (StrategyInfo.MarketPosition == 0 && Bars.CurrentBar > LongN && Bars.High[0] > Bars.Low[0])
             {
                 if (PublicFunctions.DoubleGreater(Bars.High[0], Bars.High.Highest(LongN, 1))  //H>H20
                 )
@@ -86,7 +86,7 @@ namespace PowerLanguage.Strategy
                     m_SK.Send();
             }
 
-            if (StrategyInfo.MarketPosition > 0)
+            if (StrategyInfo.MarketPosition > 0 && Bars.CurrentBar > LongN && Bars.High[0] > Bars.Low[0])
             {
                 //SP
                 if (PublicFunctions.DoubleLess(Bars.Low[0], Bars.Low.Lowest(ShortN, 1)) //L<L10, STP
@@ -94,23 +94,22 @@ namespace PowerLanguage.Strategy
                     m_SP.Send();
 
                 //BK2
-                if (PublicFunctions.DoubleGreater(Bars.High[0], this.EntryPrice() - this.AverageTrueRange(AtrN) * 0.5)  //H>BKP+0.5*ATR
-                )
+                while (PublicFunctions.DoubleGreater(Bars.High[0], this.EntryPrice() - this.AverageTrueRange(AtrN) * 0.5)  //H>BKP+0.5*ATR
+                && CurrentPosition.OpenLots<4 )
                     m_BK.Send();
             }
 
 
-            if (StrategyInfo.MarketPosition < 0)
+            if (StrategyInfo.MarketPosition < 0 && Bars.CurrentBar > LongN && Bars.High[0] > Bars.Low[0])
             {
                 //BP
                 if (PublicFunctions.DoubleGreater(Bars.High[0], Bars.High.Highest(ShortN, 1)) // H>H10, BTP
                     || PublicFunctions.DoubleGreater(Bars.High[0], this.EntryPrice() + this.AverageTrueRange(AtrN) * 2)) //H>SKP+2*ATR
                     m_BP.Send();
                 //SK2
-                if (PublicFunctions.DoubleLess(Bars.Low[0], this.EntryPrice() - this.AverageTrueRange(AtrN) * 0.5) //L<SKP-0.5*ATR
-                )
+                while (PublicFunctions.DoubleLess(Bars.Low[0], this.EntryPrice() - this.AverageTrueRange(AtrN) * 0.5) //L<SKP-0.5*ATR
+                	&& CurrentPosition.OpenLots<4 )
                     m_SK.Send();
-
 
             }
         }
